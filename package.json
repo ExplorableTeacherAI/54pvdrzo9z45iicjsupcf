@@ -2,7 +2,7 @@
   "name": "mathvibe",
   "private": true,
   "version": "1.0.0",
-  "homepage": "https://mathvibe.space/",
+  "homepage": "https://hilbertspace.mathvibe.space/",
   "type": "module",
   "scripts": {
     "dev": "vite",
