@@ -1,0 +1,101 @@
+{
+  "sectionId": "vectors-building-blocks",
+  "learningObjective": "Understand vectors as objects with magnitude and direction that can be added and scaled, discovering how vector operations work geometrically through a basis recipe constructor",
+  "ahaMoment": "Discovering that you can reach ANY target vector by adjusting just two coefficients — the basis vectors are fundamental building blocks, and the 'numbers' describing a vector are really instructions for combining basis vectors, not inherent properties of space itself",
+  "miniSpec": {
+    "title": "Basis Recipe Constructor",
+    "narrative_wrapper": "You're given two fixed 'basis' vectors (not perpendicular, not aligned) and a target vector shown in gray. You must construct the target using ONLY whole-number multiples of the two basis vectors—like a recipe using only cups (basis 1) and tablespoons (basis 2). A counter shows your ingredient budget; overspending causes overflow.",
+    "manipulated_variable": "Two integer spinner controls (up/down buttons or scroll wheels) that set the multiplier coefficients for each basis vector, changing how many copies of each basis vector are combined",
+    "primary_visual_feedback": "As you increment each spinner, that many copies of the corresponding basis vector appear arranged tip-to-tail along the construction path; the resultant vector (sum) draws in bright color from origin to the final tip position; distance to target updates numerically and as a shrinking gap line",
+    "causal_chain_exposed": "Each basis vector contribution appears as a separate colored segment in the tip-to-tail chain (e.g., three blue arrows for '3× basis-1', two red arrows for '2× basis-2'); a component breakdown table shows how many units of each basis you're using; the resultant's coordinates appear in terms of the basis vectors, not x/y",
+    "trace_strategy": "Each time you test a coefficient combination, the resultant vector freezes as a faint ghost with a label showing the coefficients tried (e.g., '2,3'); this creates a growing field of attempt vectors radiating from origin, visually mapping the integer lattice spanned by the two basis vectors",
+    "aha_moment": "Discovering that you can reach ANY target vector by adjusting just two coefficients—the basis vectors are fundamental building blocks, and the 'numbers' describing a vector are really instructions for combining basis vectors, not inherent properties of space itself",
+    "lens": "goal_constraint",
+    "novelty": 0.908,
+    "rubric_score": 5,
+    "b5": 5,
+    "b6": 5,
+    "a_pred": 5,
+    "c_pred": 5,
+    "feasibility_tier": 1,
+    "feasibility_sketch": "Draggable integer spinners, SVG vector drawing with tip-to-tail path construction, ghost trace layer, and a simple numeric readout table—all standard web primitives; no runtime risk beyond typical canvas repaint.",
+    "weakness": "The 'overflow' budget mechanic is mentioned in narrative but never specified: unclear what overflow does, when it triggers, or whether it teaches or punishes—this vagueness could undermine the feedback informativeness claim if poorly implemented.",
+    "recommended": true
+  },
+  "modelVariables": {
+    "vbb_coeff1": "Integer coefficient for basis vector 1 (teal), student-controlled via spinner",
+    "vbb_coeff2": "Integer coefficient for basis vector 2 (indigo), student-controlled via spinner",
+    "vbb_resultX": "derived: x-coordinate of the resultant vector (coeff1*basis1x + coeff2*basis2x)",
+    "vbb_resultY": "derived: y-coordinate of the resultant vector (coeff1*basis1y + coeff2*basis2y)",
+    "vbb_distanceToTarget": "derived: Euclidean distance from resultant to target vector",
+    "vbb_targetReached": "derived: boolean, true when distance < threshold (target matched)",
+    "vbb_ghostTraces": "array of past attempt coefficients [{c1, c2}], for ghost trace layer"
+  },
+  "assertions": [
+    {
+      "id": "initial-state-poses-problem",
+      "description": "On load, the coefficients are not set to the solution — the target is not yet reached",
+      "expect": [
+        { "var": "vbb_targetReached", "op": "==", "value": false }
+      ],
+      "visualCheck": "Target vector shown in gray, resultant does not coincide with it, gap line visible"
+    },
+    {
+      "id": "increasing-coeff1-extends-chain",
+      "description": "Incrementing coeff1 adds another basis-1 segment to the tip-to-tail chain and moves the resultant",
+      "setup": { "vbb_coeff1": 1, "vbb_coeff2": 1 },
+      "action": { "var": "vbb_coeff1", "to": 2 },
+      "expect": [
+        { "var": "vbb_resultX", "op": ">", "value": 0 }
+      ],
+      "visualCheck": "Two teal arrow segments appear tip-to-tail; resultant vector extends further from origin"
+    },
+    {
+      "id": "negative-coefficients-reverse-direction",
+      "description": "Setting a negative coefficient makes that basis contribution point in the opposite direction",
+      "setup": { "vbb_coeff1": 1, "vbb_coeff2": 0 },
+      "action": { "var": "vbb_coeff1", "to": -1 },
+      "expect": [
+        { "var": "vbb_resultX", "op": "<", "value": 0 }
+      ],
+      "visualCheck": "The teal segment now points opposite to its original direction"
+    },
+    {
+      "id": "correct-coefficients-reach-target",
+      "description": "When coefficients match the target's decomposition, the target is reached (the aha moment)",
+      "setup": { "vbb_coeff1": 0, "vbb_coeff2": 0 },
+      "action": { "var": "vbb_coeff1", "to": 2 },
+      "expect": [
+        { "var": "vbb_distanceToTarget", "op": "<", "value": 0.5 }
+      ],
+      "visualCheck": "Resultant overlaps target, gap line disappears or shrinks to near zero"
+    },
+    {
+      "id": "ghost-trace-records-attempts",
+      "description": "After changing coefficients, a ghost trace appears recording the previous attempt",
+      "setup": { "vbb_coeff1": 1, "vbb_coeff2": 1, "vbb_ghostTraces": [] },
+      "action": { "var": "vbb_coeff1", "to": 2 },
+      "expect": [
+        { "var": "vbb_ghostTraces", "op": "!=", "value": [] }
+      ],
+      "visualCheck": "A faint ghost arrow from a previous attempt is visible with its coefficient label"
+    }
+  ],
+  "invariants": [
+    {
+      "id": "resultant-equals-linear-combination",
+      "description": "The resultant vector always equals coeff1*basis1 + coeff2*basis2",
+      "expect": [
+        { "expr": "abs(vbb_resultX - (vbb_coeff1 * 2 + vbb_coeff2 * 1)) < 0.01" },
+        { "expr": "abs(vbb_resultY - (vbb_coeff1 * 0.5 + vbb_coeff2 * 2)) < 0.01" }
+      ]
+    },
+    {
+      "id": "distance-is-non-negative",
+      "description": "Distance to target is always non-negative",
+      "expect": [
+        { "expr": "vbb_distanceToTarget >= 0" }
+      ]
+    }
+  ]
+}

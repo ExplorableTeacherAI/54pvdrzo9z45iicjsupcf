@@ -1,0 +1,42 @@
+{
+  "section_id": "vector-spaces-axioms",
+  "title": "Axiom Failure Prediction Game",
+  "status": "queued",
+  "detail": "",
+  "summary": "",
+  "verify_passed": null,
+  "is_revision": false,
+  "registered": false,
+  "issues": [],
+  "sdk_session_id": null,
+  "created_at": 1784172848.6305869,
+  "updated_at": 1784172848.630591,
+  "payload": {
+    "section_id": "vector-spaces-axioms",
+    "learning_objective": "Understand the axioms that define a vector space (closure under addition and scalar multiplication, existence of zero vector and inverses) and why these abstract rules capture the essence of 'vectorness' through an axiom failure prediction game",
+    "mini_spec": {
+      "title": "Axiom Failure Prediction Game",
+      "narrative_wrapper": "The student sees a strange candidate structure (like vectors with \"max\" as addition). Before testing each axiom, they drag a slider to predict how badly it will fail: from \"works perfectly\" to \"completely breaks\". When they click \"reveal\", the system shows a concrete counterexample with numeric values filling in, and their prediction marker stays visible next to the actual severity.",
+      "manipulated_variable": "A prediction slider for each axiom showing expected failure severity (0-100%), which changes the student's committed hypothesis about whether and how much each axiom will be violated",
+      "primary_visual_feedback": "As the slider moves, a colored bar fills from green through yellow to red, with text labels changing from \"holds\" through \"slightly violated\" to \"totally broken\", appearing directly on the slider track",
+      "causal_chain_exposed": "After reveal, the concrete counterexample shows: the two specific vectors chosen, the operation applied step-by-step with intermediate notation, the left-hand-side calculation result, the right-hand-side calculation result, and the inequality or equality comparing them, all laid out vertically to show the logical flow",
+      "trace_strategy": "Previous predictions remain as semi-transparent ghost sliders beneath each axiom's current state, with a small badge showing the prediction error magnitude, allowing students to calibrate their intuition across multiple structures",
+      "aha_moment": "Vector spaces aren't just \"things that obey rules\"\u2014different operations break axioms in dramatically different ways, and some non-standard operations (like componentwise maximum) feel almost right but fail specific axioms catastrophically while satisfying others perfectly",
+      "lens": "prediction_first",
+      "novelty": 0.819,
+      "rubric_score": 4.45,
+      "b5": 4,
+      "b6": 5,
+      "a_pred": 5,
+      "c_pred": 4,
+      "feasibility_tier": 1,
+      "feasibility_sketch": "Sliders, colored bars, text labels, and step-by-step counterexample display are all standard web components; no runtime risk beyond basic DOM rendering and simple arithmetic display logic.",
+      "weakness": "The design assumes students will make *meaningful* predictions before reveal, but without scaffolding on what each axiom even *is* or why to care, many will slider-spam randomly rather than reason through them, reducing the calibration effect to noise.",
+      "recommended": true
+    },
+    "target_misconception": "Thinking vector spaces are only R^n \u2014 not understanding the abstract axiomatic structure",
+    "audience": "University (20+), no prior knowledge",
+    "section_context": "Second section after vectors, transitioning from concrete geometric vectors to abstract axiomatic structure",
+    "design_brief": "This is a lesson on Hilbert spaces for university students. The shared domain model is in src/data/model.ts with vector operations. This section introduces the 8 vector space axioms through interactive prediction. After this section, students will learn inner products, then completeness, then Hilbert spaces. Use soft colors (teal #62D0AD, indigo #8E90F5, amber #F7B23B for highlights). Include scaffolding text explaining each axiom before the prediction game."
+  }
+}

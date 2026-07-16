@@ -1,0 +1,42 @@
+{
+  "section_id": "vectors-building-blocks",
+  "title": "Basis Recipe Constructor",
+  "status": "building",
+  "detail": "writing spec and code",
+  "summary": "",
+  "verify_passed": null,
+  "is_revision": false,
+  "registered": false,
+  "issues": [],
+  "sdk_session_id": "6d1eb189-a697-4cd0-ae44-4401447faec7",
+  "created_at": 1784172800.3699782,
+  "updated_at": 1784172801.36944,
+  "payload": {
+    "section_id": "vectors-building-blocks",
+    "learning_objective": "Understand vectors as objects with magnitude and direction that can be added and scaled, discovering how vector operations work geometrically through a basis recipe constructor",
+    "mini_spec": {
+      "title": "Basis Recipe Constructor",
+      "narrative_wrapper": "You're given two fixed 'basis' vectors (not perpendicular, not aligned) and a target vector shown in gray. You must construct the target using ONLY whole-number multiples of the two basis vectors\u2014like a recipe using only cups (basis 1) and tablespoons (basis 2). A counter shows your ingredient budget; overspending causes overflow.",
+      "manipulated_variable": "Two integer spinner controls (up/down buttons or scroll wheels) that set the multiplier coefficients for each basis vector, changing how many copies of each basis vector are combined",
+      "primary_visual_feedback": "As you increment each spinner, that many copies of the corresponding basis vector appear arranged tip-to-tail along the construction path; the resultant vector (sum) draws in bright color from origin to the final tip position; distance to target updates numerically and as a shrinking gap line",
+      "causal_chain_exposed": "Each basis vector contribution appears as a separate colored segment in the tip-to-tail chain (e.g., three blue arrows for '3\u00d7 basis-1', two red arrows for '2\u00d7 basis-2'); a component breakdown table shows how many units of each basis you're using; the resultant's coordinates appear in terms of the basis vectors, not x/y",
+      "trace_strategy": "Each time you test a coefficient combination, the resultant vector freezes as a faint ghost with a label showing the coefficients tried (e.g., '2,3'); this creates a growing field of attempt vectors radiating from origin, visually mapping the integer lattice spanned by the two basis vectors",
+      "aha_moment": "Discovering that you can reach ANY target vector by adjusting just two coefficients\u2014the basis vectors are fundamental building blocks, and the 'numbers' describing a vector are really instructions for combining basis vectors, not inherent properties of space itself",
+      "lens": "goal_constraint",
+      "novelty": 0.908,
+      "rubric_score": 5,
+      "b5": 5,
+      "b6": 5,
+      "a_pred": 5,
+      "c_pred": 5,
+      "feasibility_tier": 1,
+      "feasibility_sketch": "Draggable integer spinners, SVG vector drawing with tip-to-tail path construction, ghost trace layer, and a simple numeric readout table\u2014all standard web primitives; no runtime risk beyond typical canvas repaint.",
+      "weakness": "The 'overflow' budget mechanic is mentioned in narrative but never specified: unclear what overflow does, when it triggers, or whether it teaches or punishes\u2014this vagueness could undermine the feedback informativeness claim if poorly implemented.",
+      "recommended": true
+    },
+    "target_misconception": "Vectors are just lists of numbers rather than geometric objects with direction and magnitude",
+    "audience": "University (20+), no prior knowledge",
+    "section_context": "Opening section of a Hilbert space lesson, introducing vectors as the fundamental building blocks before moving to vector spaces, inner products, and completeness",
+    "design_brief": "This is a lesson on Hilbert spaces for university students with no prior knowledge. The shared domain model is in src/data/model.ts and includes vector operations (addVec2, scaleVec2, linearCombination2, magnitude2). The lesson builds from vectors \u2192 vector spaces \u2192 inner products \u2192 completeness \u2192 Hilbert spaces. Maintain a clean, academic tone with soft muted colors (teal #62D0AD for primary, indigo #8E90F5 for secondary)."
+  }
+}

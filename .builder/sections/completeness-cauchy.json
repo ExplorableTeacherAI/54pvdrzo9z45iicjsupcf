@@ -1,0 +1,42 @@
+{
+  "section_id": "completeness-cauchy",
+  "title": "Reverse-Engineer the Missing Limit Point",
+  "status": "queued",
+  "detail": "",
+  "summary": "",
+  "verify_passed": null,
+  "is_revision": false,
+  "registered": false,
+  "issues": [],
+  "sdk_session_id": null,
+  "created_at": 1784172943.772104,
+  "updated_at": 1784172943.772118,
+  "payload": {
+    "section_id": "completeness-cauchy",
+    "learning_objective": "Understand completeness as the property that every Cauchy sequence converges within the space, seeing why some spaces have 'gaps' through reverse-engineering the missing limit point",
+    "mini_spec": {
+      "title": "Reverse-Engineer the Missing Limit Point",
+      "narrative_wrapper": "The student sees a Cauchy sequence animating toward a mysterious destination marked with a question mark. They drag this destination point along the number line to different candidate locations. The system immediately reveals whether placing the limit at that location would make the space complete or incomplete, showing which points would need to exist in the space to support that choice.",
+      "manipulated_variable": "The position of the would-be limit point on the number line (the OUTPUT of sequence convergence), which inversely determines what the containing space must be",
+      "primary_visual_feedback": "As the limit point is dragged, the sequence terms immediately rearrange themselves to form a Cauchy sequence converging to that new location, with their spacing and positions updating fluidly; simultaneously, the background shading shows whether the current space contains that point",
+      "causal_chain_exposed": "A secondary display shows the tail terms' pairwise distances shrinking to zero regardless of limit location (Cauchy property always satisfied), while a separate indicator shows whether the limit point itself belongs to the current space (completeness question); a third panel displays the minimal space definition needed to include both all sequence terms AND the chosen limit",
+      "trace_strategy": "Ghost images of previously placed limit positions remain as faint dots with checkmarks (space was complete for that choice) or X marks (space was incomplete), building a visual map of which limit locations expose incompleteness",
+      "aha_moment": "Completeness isn't about the sequence behavior itself\u2014the sequence is Cauchy everywhere you place the limit\u2014it's about whether the space happens to contain the point where the sequence wants to go; the property lives in the space, not the sequence",
+      "lens": "inversion",
+      "novelty": 0.843,
+      "rubric_score": 5,
+      "b5": 5,
+      "b6": 5,
+      "a_pred": 5,
+      "c_pred": 5,
+      "feasibility_tier": 2,
+      "feasibility_sketch": "Bespoke canvas rendering of animated sequence terms + draggable limit point + real-time distance calculations and space membership logic; runtime risk is minimal (all computation is O(n) per frame on a finite sequence).",
+      "weakness": "The spec does not clarify how the space definition is chosen initially (e.g., \u211d vs. \u211a vs. a bounded interval), leaving ambiguity about what the student is actually discovering when they drag the limit point outside the current space.",
+      "recommended": true
+    },
+    "target_misconception": "Confusing completeness with closedness or boundedness \u2014 not understanding that completeness is about limits existing within the space",
+    "audience": "University (20+), no prior knowledge",
+    "section_context": "Fourth section after inner products, introducing the key analytic property needed for Hilbert spaces",
+    "design_brief": "This is a lesson on Hilbert spaces for university students. The shared domain model is in src/data/model.ts with cauchyTerm, nonConvergentTerm, isCauchyUpTo functions. This section explains why completeness matters \u2014 it ensures limits exist. Compare \u211a (incomplete) vs \u211d (complete). Use soft colors (teal #62D0AD, indigo #8E90F5). The classic example is \u221a2 which is the limit of a Cauchy sequence in \u211a but doesn't exist in \u211a."
+  }
+}

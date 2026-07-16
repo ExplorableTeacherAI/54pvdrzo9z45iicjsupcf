@@ -1,0 +1,42 @@
+{
+  "section_id": "hilbert-space-conditions",
+  "title": "Reverse-Engineer the Space from Properties",
+  "status": "queued",
+  "detail": "",
+  "summary": "",
+  "verify_passed": null,
+  "is_revision": false,
+  "registered": false,
+  "issues": [],
+  "sdk_session_id": null,
+  "created_at": 1784173023.2237718,
+  "updated_at": 1784173023.223787,
+  "payload": {
+    "section_id": "hilbert-space-conditions",
+    "learning_objective": "Identify and understand the two conditions for a Hilbert space: inner product structure and completeness, seeing why both conditions are necessary through reverse-engineering the space from properties",
+    "mini_spec": {
+      "title": "Reverse-Engineer the Space from Properties",
+      "narrative_wrapper": "The student sees a card labeled 'Hilbert Space' with two glowing properties: angle measurement and no missing limits. By dragging either property off the card, the space morphs into a different mathematical structure, and the student must observe what happens to specific example sequences and vectors. They discover that removing either property breaks the Hilbert space in fundamentally different ways.",
+      "manipulated_variable": "The student drags individual property labels ('Has Inner Product' or 'Is Complete') off or onto the space card, directly manipulating which defining conditions the space satisfies",
+      "primary_visual_feedback": "As a property is dragged away, the space visualization immediately transforms: removing 'Has Inner Product' causes angle indicators between vectors to vanish and orthogonality to become undefined; removing 'Is Complete' causes some point sequences to flash red and show arrows pointing outside the space toward missing limits",
+      "causal_chain_exposed": "A sidebar shows live example objects: two vectors with their angle measurement (which becomes '???' without inner product) and a Cauchy sequence with its limit point (which becomes 'not in space' without completeness), allowing students to see precisely what mathematical operations fail",
+      "trace_strategy": "A timeline at the bottom accumulates screenshots of each configuration attempted, labeled with the space name that results, building a taxonomy of incomplete spaces (metric spaces, inner product spaces without completeness, sets without structure)",
+      "aha_moment": "That removing either property produces a fundamentally different broken space\u2014one loses geometric structure entirely while the other loses the guarantee that convergent processes stay within the space\u2014so neither property alone captures what makes Hilbert spaces useful",
+      "lens": "inversion",
+      "novelty": 0.852,
+      "rubric_score": 5,
+      "b5": 5,
+      "b6": 5,
+      "a_pred": 5,
+      "c_pred": 5,
+      "feasibility_tier": 2,
+      "feasibility_sketch": "Needs bespoke SVG/canvas rendering for space morphing and live vector/sequence visualizations (angle indicators vanishing, limit points appearing/disappearing), plus state management for property drag logic\u2014all standard web tech, no runtime risk.",
+      "weakness": "The aha_moment conflates two distinct insights (loss of geometric structure vs. loss of convergence closure) without scaffolding which broken space teaches which lesson\u2014students may observe the morphing without grasping *why* completeness matters specifically for applications (e.g., functional analysis, solving PDEs) versus inner product structure.",
+      "recommended": true
+    },
+    "target_misconception": "Not understanding why both conditions (inner product AND completeness) are necessary \u2014 thinking one implies the other",
+    "audience": "University (20+), no prior knowledge",
+    "section_context": "Final section synthesizing all previous concepts into the definition of Hilbert space",
+    "design_brief": "This is the culminating section of a Hilbert space lesson for university students. The shared domain model is in src/data/model.ts with checkHilbertSpace, HILBERT_EXAMPLES functions. Synthesize: vectors \u2192 vector spaces \u2192 inner products \u2192 completeness \u2192 Hilbert space. Show examples like \u211d\u207f (Hilbert), L\u00b2 (Hilbert), \u211a\u207f (not complete so not Hilbert), c\u2080\u2080 (not complete). Use soft colors (teal #62D0AD for inner product, indigo #8E90F5 for completeness). Include assessment questions to check understanding of the two conditions."
+  }
+}

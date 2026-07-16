@@ -1,0 +1,42 @@
+{
+  "section_id": "inner-products-norms",
+  "title": "Shadow Length Comparison Across Inner Products",
+  "status": "queued",
+  "detail": "",
+  "summary": "",
+  "verify_passed": null,
+  "is_revision": false,
+  "registered": false,
+  "issues": [],
+  "sdk_session_id": null,
+  "created_at": 1784172896.738335,
+  "updated_at": 1784172896.738343,
+  "payload": {
+    "section_id": "inner-products-norms",
+    "learning_objective": "Understand inner products as a way to measure angles and lengths in vector spaces, seeing how the dot product generalizes and induces a norm through shadow projection comparison",
+    "mini_spec": {
+      "title": "Shadow Length Comparison Across Inner Products",
+      "narrative_wrapper": "Two identical vector scenes sit side by side, each casting a \"shadow\" of one vector onto another. The student drags a slider that continuously morphs the inner product from standard dot product through weighted versions to an off-axis inner product. As the inner product changes, the shadow length changes differently in each scene because one uses the current inner product while the other always uses standard dot product.",
+      "manipulated_variable": "A single slider that changes the inner product formula parameters (weight ratios or matrix entries), simultaneously affecting how projection length is calculated in the left scene while the right scene stays locked to standard dot product",
+      "primary_visual_feedback": "The shadow cast by the first vector onto the second vector grows or shrinks in the left scene as the slider moves; a numerical projection coefficient appears above each shadow showing the ratio of shadow length to target vector length; the right scene's shadow remains static for reference",
+      "causal_chain_exposed": "Both scenes display the inner product computation formula with live-updating numbers; below each shadow, a decomposition shows the vector split into parallel (shadow) and perpendicular components with their lengths labeled; a small inset shows the unit circle distortion corresponding to the current inner product",
+      "trace_strategy": "A ghost overlay preserves the previous shadow positionin translucent gray each time the student pauses dragging for half a second, building up a family of shadows that show how projection depends on inner product choice; these ghosts fade after five seconds",
+      "aha_moment": "The shadow of one vector onto another is not an objective geometric fact but depends entirely on which inner product defines \"projection\"\u2014the same two vectors have different projections under different inner products, revealing that geometric concepts require an inner product to have meaning",
+      "lens": "comparison",
+      "novelty": 0.872,
+      "rubric_score": 4.27,
+      "b5": 4,
+      "b6": 5,
+      "a_pred": 4,
+      "c_pred": 4,
+      "feasibility_tier": 2,
+      "feasibility_sketch": "Requires custom SVG/canvas rendering of vectors, shadows, unit circle distortions, and ghost overlays with live formula updates; runtime risk is minimal (2D geometry, no physics).",
+      "weakness": "The slider is a single continuous parameter, but 'morphing from dot product through weighted to off-axis' is underspecified\u2014unclear which degrees of freedom students actually control or whether the morphing path itself teaches something intentional.",
+      "recommended": true
+    },
+    "target_misconception": "Inner product is just the dot product formula \u2014 not understanding it as a general structure that can be defined on abstract spaces",
+    "audience": "University (20+), no prior knowledge",
+    "section_context": "Third section after vector spaces, introducing geometric structure through inner products before completeness",
+    "design_brief": "This is a lesson on Hilbert spaces for university students. The shared domain model is in src/data/model.ts with innerProduct2, norm2, angleBetween, project functions. This section connects inner products to geometric concepts like projection and angle. After this, students learn completeness, then Hilbert spaces. Use soft colors (teal #62D0AD, indigo #8E90F5). Include explanation of inner product axioms before the visualization."
+  }
+}

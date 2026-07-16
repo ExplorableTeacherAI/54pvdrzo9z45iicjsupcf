@@ -78,6 +78,83 @@ export interface VariableDefinition {
  */
 export const variableDefinitions: Record<string, VariableDefinition> = {
     // ========================================
+    // VECTORS BUILDING BLOCKS SECTION
+    // ========================================
+
+    vbb_coeff1: {
+        defaultValue: 1,
+        type: 'number',
+        label: 'Basis 1 coefficient',
+        description: 'Integer coefficient for basis vector 1 (teal)',
+        min: -4,
+        max: 4,
+        step: 1,
+        color: '#62D0AD',
+    },
+    vbb_coeff2: {
+        defaultValue: 0,
+        type: 'number',
+        label: 'Basis 2 coefficient',
+        description: 'Integer coefficient for basis vector 2 (indigo)',
+        min: -4,
+        max: 4,
+        step: 1,
+        color: '#8E90F5',
+    },
+    vbb_resultX: {
+        defaultValue: 2,
+        type: 'number',
+        label: 'Resultant X',
+        description: 'X-coordinate of the resultant vector (derived)',
+    },
+    vbb_resultY: {
+        defaultValue: 0.5,
+        type: 'number',
+        label: 'Resultant Y',
+        description: 'Y-coordinate of the resultant vector (derived)',
+    },
+    vbb_distanceToTarget: {
+        defaultValue: 3.91,
+        type: 'number',
+        label: 'Distance to Target',
+        description: 'Euclidean distance from resultant to target vector (derived)',
+    },
+    vbb_targetReached: {
+        defaultValue: false,
+        type: 'boolean',
+        label: 'Target Reached',
+        description: 'True when the resultant matches the target vector (derived)',
+    },
+    vbb_ghostTraces: {
+        defaultValue: [],
+        type: 'array',
+        label: 'Ghost Traces',
+        description: 'Array of past coefficient attempts for ghost trace display',
+        schema: '{ c1: number, c2: number }[]',
+    },
+
+    // Assessment variables
+    vbb_answer_linear_combo: {
+        defaultValue: '',
+        type: 'text',
+        label: 'Linear combination answer',
+        description: 'Student answer for linear combination concept question',
+        placeholder: '???',
+        correctAnswer: 'linear combination',
+        color: '#62D0AD',
+    },
+    vbb_answer_reach_any: {
+        defaultValue: '',
+        type: 'select',
+        label: 'Can reach any vector answer',
+        description: 'Student answer for whether any vector can be reached',
+        placeholder: '???',
+        correctAnswer: 'yes',
+        options: ['yes', 'no', 'only some'],
+        color: '#8E90F5',
+    },
+
+    // ========================================
     // ADD YOUR VARIABLES HERE
     // ========================================
 
